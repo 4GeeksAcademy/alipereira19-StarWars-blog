@@ -3,7 +3,7 @@ import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 
 
-const LearnMorePeople = ({ character }) => {
+const LearnMorePeople = () => {
     const { store, actions } = useContext(Context);
     const getInfoPeople = async () => {
         try {
@@ -20,22 +20,22 @@ const LearnMorePeople = ({ character }) => {
 
     return (
         <div className="container my-4">
-            <h1 className="text-center">{character.name || "Details"}</h1>
+            <h1 className="text-center" style={{ color: "rgb(255, 25, 25)" }} >{store.properties.properties.name || "Details"}</h1>
             <div className="card mx-auto" style={{ maxWidth: "600px" }}>
                 <img
-                    src={`https://starwars-visualguide.com//assets/img/characters/${character.uid}.jpg`}
+                    src={`https://starwars-visualguide.com//assets/img/characters/${store.properties.uid}.jpg`}
                     className="card-img-top"
-                    alt={character.name}
+                    alt={store.properties.properties.name}
                 />
                 <div className="card-body">
                     <h5 className="card-title">Type: People</h5>
-                    <p><strong>Height: </strong>{character.height || 'N/A'}</p>
-                    <p><strong>Mass: </strong>{character.mass || 'N/A'}</p>
-                    <p><strong>Hair Color: </strong>{character.hair_color || 'N/A'}</p>
-                    <p><strong>Skin Color: </strong>{character.skin_color || 'N/A'}</p>
-                    <p><strong>Eye Color: </strong>{character.eye_color || 'N/A'}</p>
-                    <p><strong>Birth Year: </strong>{character.birth_year || 'N/A'}</p>
-                    <p><strong>Gender: </strong>{character.gender || 'N/A'}</p>
+                    <p><strong>Height: </strong>{store.properties.properties.height || 'N/A'}</p>
+                    <p><strong>Mass: </strong>{store.properties.properties.mass || 'N/A'}</p>
+                    <p><strong>Hair Color: </strong>{store.properties.properties.hair_color || 'N/A'}</p>
+                    <p><strong>Skin Color: </strong>{store.properties.properties.skin_color || 'N/A'}</p>
+                    <p><strong>Eye Color: </strong>{store.properties.properties.eye_color || 'N/A'}</p>
+                    <p><strong>Birth Year: </strong>{store.properties.properties.birth_year || 'N/A'}</p>
+                    <p><strong>Gender: </strong>{store.properties.properties.gender || 'N/A'}</p>
                 </div>
             </div>
         </div>
