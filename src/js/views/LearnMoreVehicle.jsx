@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const LearnMoreVehicle = () => {
     const { store, actions } = useContext(Context);
-    const getInfoVehicle = async () => {
+    const getInfoVehicles = async () => {
         try {
             await actions.getMoreVehicles()
         } catch (error) {
@@ -14,7 +14,7 @@ const LearnMoreVehicle = () => {
     };
 
     useEffect(() => {
-        getInfoVehicle();
+        getInfoVehicles();
     }, []);
 
     return (
@@ -27,14 +27,17 @@ const LearnMoreVehicle = () => {
                     alt={store.vehicleProperties.properties.name}
                 />
                 <div className="card-body">
-                    <h5 className="card-title">Type: Vehicle</h5>
-                    <p><strong>Model: </strong>{store.vehicleProperties.properties.model || 'N/A'}</p>
-                    <p><strong>Vehicle Class: </strong>{store.vehicleProperties.properties.vehicle_class || 'N/A'}</p>
-                    <p><strong>Manufacturer: </strong>{store.vehicleProperties.properties.manufacturer || 'N/A'}</p>
-                    <p><strong>Cost in credits: </strong>{store.vehicleProperties.properties.cost_in_credits || 'N/A'}</p>
-                    <p><strong>Length: </strong>{store.vehicleProperties.properties.length || 'N/A'}</p>
-                    <p><strong>Crew: </strong>{store.vehicleProperties.properties.crew || 'N/A'}</p>
-                    <p><strong>Passengers: </strong>{store.vehicleProperties.properties.passengers || 'N/A'}</p>
+                    <h1 className="card-title">Type: Vehicle</h1>
+                    <h3><strong>Model: </strong>{store.vehicleProperties.properties.model || 'N/A'}</h3>
+                    <h3><strong>Vehicle Class: </strong>{store.vehicleProperties.properties.vehicle_class || 'N/A'}</h3>
+                    <h3><strong>Manufacturer: </strong>{store.vehicleProperties.properties.manufacturer || 'N/A'}</h3>
+                    <h3><strong>Cost in credits: </strong>{store.vehicleProperties.properties.cost_in_credits || 'N/A'}</h3>
+                    <h3><strong>Length: </strong>{store.vehicleProperties.properties.length || 'N/A'}</h3>
+                    <h3><strong>Crew: </strong>{store.vehicleProperties.properties.crew || 'N/A'}</h3>
+                    <h3><strong>Passengers: </strong>{store.vehicleProperties.properties.passengers || 'N/A'}</h3>
+                    <h3><strong>Max atmosphering speed: </strong>{store.vehicleProperties.properties.max_atmosphering_speed || 'N/A'}</h3>
+                    <h3><strong>Cargo capacity: </strong>{store.vehicleProperties.properties.cargo_capacity || 'N/A'}</h3>
+                    <h3><strong>Consumables: </strong>{store.vehicleProperties.properties.consumables || 'N/A'}</h3>
                 </div>
             </div>
         </div>

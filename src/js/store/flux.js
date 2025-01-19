@@ -5,6 +5,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			properties: [],
 			vehicles: [],
 			vehicleProperties: [],
+			starships: [],
+			starshipProperties: [],
 		},
 		actions: {
 			getPeople: async (page) => {
@@ -89,7 +91,47 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				}
 			},
+			getStarships: async (page) => {
+				try {
+					console.log("estoy en getStarships");
 
+					const response = await fetch(`https://www.swapi.tech/api/starships?page=${page}&limit=10`)
+					console.log("Este es el response de starships", response);
+
+					if (!response.ok) {
+						throw new Error("No sirvió")
+
+					}
+					const data = await response.json();
+					console.log("esta es la data de starships", data);
+
+					const store = getStore()
+					setStore({ ...store, starships: data.results })
+					console.log(data);
+
+				} catch (error) {
+					console.error(error);
+
+				}
+			},
+			getMoreStarships: async (id) => {
+				try {
+					const response = await fetch(`https://www.swapi.tech/api/starships/${id}`)
+					if (!response.ok) {
+						throw new Error("No sirvió")
+					}
+					const data = await response.json();
+					console.log("esta es la otra data de starships", data);
+
+					const store = getStore()
+					setStore({ ...store, starshipProperties: data.result })
+					console.log(data);
+
+				} catch (error) {
+					console.error(error);
+
+				}
+			},
 		}
 	};
 };

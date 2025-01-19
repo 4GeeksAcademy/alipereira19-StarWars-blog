@@ -67,7 +67,7 @@ const People = () => {
     }, []);
     return (
         <div className="container my-4">
-            <h1 className="" style={{ color: 'rgb(3, 93, 172)' }}>Characters</h1>
+            <h1 className="" style={{ color: 'rgb(3, 93, 172)', fontSize: '80px' }}>Characters</h1>
             <div className="d-flex overflow-auto flex-row" style={{
                 display: "flex",
                 flexDirection: "row",
@@ -91,11 +91,11 @@ const People = () => {
                                 marginLeft: "3px",
                                 marginRight: "3px",
                             }} key={character.uid} >
-                                <img src={`https://starwars-visualguide.com//assets/img/characters/${character.uid}.jpg`} className="card-img-top" alt="..." />
+                                <img src={`https://starwars-visualguide.com//assets/img/characters/${character.uid}.jpg`} className="card-img-top text-white" alt="Imagen no disponible en tu país/región" />
                                 <div className="card-body ">
                                     <h5 className="card-title" style={{ color: "rgb(255, 25, 25)" }}>{character.name}</h5>
                                     <br />
-                                    <button style={{ background: "rgb(102, 102, 102)" }} className="btn btn-md text-dark" onClick={() => handlerMoreDetails(character.uid)}>Learn More!</button>
+                                    <button style={{ background: "rgb(102, 102, 102)" }} className="btn btn-md text-warning" onClick={() => handlerMoreDetails(character.uid)}>Learn More!</button>
                                 </div>
                             </div>
                         )

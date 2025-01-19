@@ -4,17 +4,17 @@ import { useNavigate } from "react-router-dom";
 import { GrCaretNext } from "react-icons/gr";
 import { GrCaretPrevious } from "react-icons/gr";
 
-const Vehicles = () => {
+const Starships = () => {
     const { store, actions } = useContext(Context);
     const [page, setPage] = useState(1)
     const navigate = useNavigate();
 
 
-    const nextVehicle = async () => {
+    const nextStarship = async () => {
         try {
             const nextPage = page + 1;
             setPage(nextPage)
-            await actions.getVehicle(nextPage)
+            await actions.getStarships(nextPage)
             console.log("esta es la pagina", page);
 
         } catch (error) {
@@ -22,12 +22,12 @@ const Vehicles = () => {
 
         }
     };
-    const previousVehicle = async () => {
+    const previousStarship = async () => {
         try {
             if (page > 1) {
                 const prevPage = page - 1;
                 setPage(prevPage);
-                await actions.getVehicle(prevPage)
+                await actions.getStarships(prevPage)
                 console.log("esta es la pagina", page);
             }
 
@@ -37,9 +37,9 @@ const Vehicles = () => {
         }
     };
 
-    const handlerGetVehicle = async () => {
+    const handlerGetStarships = async () => {
         try {
-            await actions.getVehicle(page);
+            await actions.getStarships(page);
         } catch (error) {
             console.error(error);
 
@@ -48,8 +48,8 @@ const Vehicles = () => {
 
     const handlerMoreDetails = async (id) => {
         try {
-            await actions.getMoreVehicles(id);
-            navigate("/morevehicles")
+            await actions.getMoreStarships(id);
+            navigate("/morestarships")
 
         } catch (error) {
             console.error(error);
@@ -57,12 +57,12 @@ const Vehicles = () => {
     };
 
     useEffect(() => {
-        handlerGetVehicle();
+        handlerGetStarships();
         setPage(1)
     }, []);
     return (
         <div className="container my-4">
-            <h1 className="" style={{ color: 'rgb(3, 93, 172)', fontSize: '80px' }}>Vehicles</h1>
+            <h1 className="" style={{ color: 'rgb(3, 93, 172)', fontSize: '80px' }}>Starships</h1>
             <div className="d-flex overflow-auto flex-row" style={{
                 display: "flex",
                 flexDirection: "row",
@@ -73,7 +73,7 @@ const Vehicles = () => {
                 borderRadius: "8px",
             }}>
                 {
-                    store.vehicles && store.vehicles.map((vehicle) => {
+                    store.starships && store.starships.map((starship) => {
                         return (
                             <div className="card" style={{
                                 minWidth: "200px",
@@ -85,25 +85,25 @@ const Vehicles = () => {
                                 borderRadius: "8px",
                                 marginLeft: "3px",
                                 marginRight: "3px",
-                            }} key={vehicle.uid} >
-                                <img src={`https://starwars-visualguide.com//assets/img/vehicles/${vehicle.uid}.jpg`} style={{ height: "400px" }} className="card-img-top text-white" alt="Imagen no disponible en tu país/región" />
+                            }} key={starship.uid} >
+                                <img src={`https://starwars-visualguide.com//assets/img/starships/${starship.uid}.jpg`} style={{ height: "400px" }} className="card-img-top text-white" alt="Imagen no disponible en tu país/región" />
                                 <div className="card-body ">
-                                    <h5 className="card-title" style={{ color: "rgb(255, 25, 25)" }}>{vehicle.name}</h5>
+                                    <h5 className="card-title" style={{ color: "rgb(255, 25, 25)" }}>{starship.name}</h5>
                                     <br />
-                                    <button style={{ background: "rgb(102, 102, 102)" }} className="btn btn-md text-warning" onClick={() => handlerMoreDetails(vehicle.uid)}>Learn More!</button>
+                                    <button style={{ background: "rgb(102, 102, 102)" }} className="btn btn-md text-warning" onClick={() => handlerMoreDetails(starship.uid)}>Learn More!</button>
                                 </div>
                             </div>
                         )
                     })}
             </div>
             <div style={{ marginTop: '10px' }}>
-                <button className="btn btn-lg border border-dark rounded text-light" onClick={previousVehicle}><GrCaretPrevious />
+                <button className="btn btn-lg border border-dark rounded text-light" onClick={previousStarship}><GrCaretPrevious />
                 </button>
-                <button className="btn btn-lg border border-dark rounded text-light" onClick={nextVehicle}><GrCaretNext />
+                <button className="btn btn-lg border border-dark rounded text-light" onClick={nextStarship}><GrCaretNext />
                 </button>
             </div>
         </div>
     )
-}
+};
 
-export default Vehicles;
+export default Starships; 

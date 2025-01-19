@@ -1,4 +1,10 @@
 body {
     background: rgb(15, 15, 15);
-   
 }
+* {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    letter-spacing: 2px;
+
+    -webkit-text-stroke: 0.5px black;
+}
+

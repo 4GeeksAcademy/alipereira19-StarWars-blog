@@ -36,6 +36,7 @@ const LearnMorePeople = () => {
                     <p><strong>Eye Color: </strong>{store.properties.properties.eye_color || 'N/A'}</p>
                     <p><strong>Birth Year: </strong>{store.properties.properties.birth_year || 'N/A'}</p>
                     <p><strong>Gender: </strong>{store.properties.properties.gender || 'N/A'}</p>
+                    <p><strong>Description: </strong>{store.properties.description || 'N/A'}</p>
                 </div>
             </div>
         </div>
