@@ -19,7 +19,7 @@ const LearnMorePeople = () => {
     }, []);
 
     return (
-        <div className="container my-4">
+        <div className="container mb-1" style={{ marginTop: '80px' }}>
             <h1 className="text-center" style={{ color: "rgb(255, 25, 25)" }} >{store.properties.properties.name || "Details"}</h1>
             <div className="card mx-auto" style={{ maxWidth: "600px" }}>
                 <img

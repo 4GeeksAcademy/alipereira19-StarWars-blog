@@ -6,23 +6,17 @@ import { GrCaretPrevious } from "react-icons/gr";
 import { FaStar } from "react-icons/fa";
 
 
-
-
-
-
-
-const People = () => {
-    //const [character, setCharacter] = useState([]);
+const Planets = () => {
     const { store, actions } = useContext(Context);
     const [page, setPage] = useState(1)
     const navigate = useNavigate();
 
 
-    const nextPeople = async () => {
+    const nextPlanet = async () => {
         try {
             const nextPage = page + 1;
             setPage(nextPage)
-            await actions.getPeople(nextPage)
+            await actions.getPlanets(nextPage)
             console.log("esta es la pagina", page);
 
         } catch (error) {
@@ -30,12 +24,12 @@ const People = () => {
 
         }
     };
-    const previousPeople = async () => {
+    const previousPlanet = async () => {
         try {
             if (page > 1) {
                 const prevPage = page - 1;
                 setPage(prevPage);
-                await actions.getPeople(prevPage)
+                await actions.getPlanets(prevPage)
                 console.log("esta es la pagina", page);
             }
 
@@ -45,9 +39,9 @@ const People = () => {
         }
     };
 
-    const handlerGetPeople = async () => {
+    const handlerGetPlanets = async () => {
         try {
-            await actions.getPeople(page);
+            await actions.getPlanets(page);
         } catch (error) {
             console.error(error);
 
@@ -56,8 +50,8 @@ const People = () => {
 
     const handlerMoreDetails = async (id) => {
         try {
-            await actions.getMorePeople(id);
-            navigate("/morepeople")
+            await actions.getMorePlanets(id);
+            navigate("/moreplanets")
 
         } catch (error) {
             console.error(error);
@@ -74,12 +68,12 @@ const People = () => {
     };
 
     useEffect(() => {
-        handlerGetPeople();
+        handlerGetPlanets();
         setPage(1)
     }, []);
     return (
         <div className="container my-4">
-            <h1 className="" style={{ backgroundImage: `url(${'https://media.timeout.com/images/105863223/750/562/image.jpg'})`, backgroundSize: '600px 600px', backgroundPosition: 'center', color: 'transparent', backgroundClip: 'text', WebkitBackgroundClip: 'text', fontSize: '100px' }}>Characters</h1>
+            <h1 className="" style={{ backgroundImage: `url(${'https://static1.srcdn.com/wordpress/wp-content/uploads/2023/10/major-star-wars-planets-future-image.jpg'})`, backgroundSize: 'contain', backgroundPosition: 'center', color: 'transparent', backgroundClip: 'text', WebkitBackgroundClip: 'text', fontSize: '100px' }}>Planets</h1>
             <div className="d-flex overflow-auto flex-row" style={{
                 display: "flex",
                 flexDirection: "row",
@@ -90,11 +84,11 @@ const People = () => {
                 borderRadius: "8px",
             }}>
                 {
-                    store.people && store.people.map((character) => {
+                    store.planets && store.planets.map((planet) => {
                         return (
                             <div className="card" style={{
                                 minWidth: "200px",
-                                minHeight: "400px",
+                                height: "400px",
                                 backgroundColor: "rgb(34, 34, 34)",
                                 display: "flex",
                                 flexDirection: "column",
@@ -102,13 +96,13 @@ const People = () => {
                                 borderRadius: "8px",
                                 marginLeft: "3px",
                                 marginRight: "3px",
-                            }} key={character.uid} >
-                                <img src={`https://starwars-visualguide.com//assets/img/characters/${character.uid}.jpg`} className="card-img-top text-white" alt="Imagen no disponible en tu país/región" />
+                            }} key={planet.uid} >
+                                <img src={`https://starwars-visualguide.com//assets/img/planets/${planet.uid}.jpg`} style={{ height: "400px" }} className="card-img-top text-white" alt="Imagen no disponible en tu país/región" />
                                 <div className="card-body ">
-                                    <h5 className="card-title" style={{ color: "rgb(255, 25, 25)" }}>{character.name}</h5>
+                                    <h5 className="card-title" style={{ color: "rgb(255, 25, 25)" }}>{planet.name}</h5>
                                     <br />
-                                    <button style={{ background: "rgb(102, 102, 102)" }} className="btn btn-md text-light" onClick={() => handlerMoreDetails(character.uid)}>Learn More!</button>
-                                    <button className="btn btn-sm border border-dark rounded text-warning" onClick={() => handlerFav(character)}><FaStar />
+                                    <button style={{ background: "rgb(102, 102, 102)" }} className="btn btn-md text-light" onClick={() => handlerMoreDetails(planet.uid)}>Learn More!</button>
+                                    <button className="btn btn-sm border border-dark rounded text-warning" onClick={() => handlerFav(planet)}><FaStar />
                                     </button>
                                 </div>
                             </div>
@@ -116,13 +110,13 @@ const People = () => {
                     })}
             </div>
             <div style={{ marginTop: '10px' }}>
-                <button className="btn btn-lg border border-dark rounded text-light" onClick={previousPeople}><GrCaretPrevious />
+                <button className="btn btn-lg border border-dark rounded text-light" onClick={previousPlanet}><GrCaretPrevious />
                 </button>
-                <button className="btn btn-lg border border-dark rounded text-light" onClick={nextPeople}><GrCaretNext />
+                <button className="btn btn-lg border border-dark rounded text-light" onClick={nextPlanet}><GrCaretNext />
                 </button>
             </div>
         </div>
     )
 }
 
-export default People; 
+export default Planets

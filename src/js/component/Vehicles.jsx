@@ -3,6 +3,8 @@ import { Context } from "../store/appContext";
 import { useNavigate } from "react-router-dom";
 import { GrCaretNext } from "react-icons/gr";
 import { GrCaretPrevious } from "react-icons/gr";
+import { FaStar } from "react-icons/fa";
+
 
 const Vehicles = () => {
     const { store, actions } = useContext(Context);
@@ -55,6 +57,14 @@ const Vehicles = () => {
             console.error(error);
         }
     };
+    const handlerFav = async (item) => {
+        try {
+            await actions.addToFavorites(item);
+            console.log(handlerFav)
+        } catch (error) {
+            console.error(error);
+        }
+    };
 
     useEffect(() => {
         handlerGetVehicle();
@@ -62,7 +72,7 @@ const Vehicles = () => {
     }, []);
     return (
         <div className="container my-4">
-            <h1 className="" style={{ color: 'rgb(3, 93, 172)', fontSize: '80px' }}>Vehicles</h1>
+            <h1 className="" style={{ backgroundImage: `url(${'https://lumiere-a.akamaihd.net/v1/images/Which-Star-Wars-Vehicle-is-Meant-For-You-AT-AT_e1161c77.jpeg?region=56%2C0%2C888%2C500'})`, backgroundSize: 'contain', backgroundPosition: 'center', color: 'transparent', backgroundClip: 'text', WebkitBackgroundClip: 'text', fontSize: '100px' }}>Vehicles</h1>
             <div className="d-flex overflow-auto flex-row" style={{
                 display: "flex",
                 flexDirection: "row",
@@ -90,7 +100,9 @@ const Vehicles = () => {
                                 <div className="card-body ">
                                     <h5 className="card-title" style={{ color: "rgb(255, 25, 25)" }}>{vehicle.name}</h5>
                                     <br />
-                                    <button style={{ background: "rgb(102, 102, 102)" }} className="btn btn-md text-warning" onClick={() => handlerMoreDetails(vehicle.uid)}>Learn More!</button>
+                                    <button style={{ background: "rgb(102, 102, 102)" }} className="btn btn-md text-light" onClick={() => handlerMoreDetails(vehicle.uid)}>Learn More!</button>
+                                    <button className="btn btn-sm border border-dark rounded text-warning" onClick={() => handlerFav(vehicle)}><FaStar />
+                                    </button>
                                 </div>
                             </div>
                         )
@@ -102,7 +114,7 @@ const Vehicles = () => {
                 <button className="btn btn-lg border border-dark rounded text-light" onClick={nextVehicle}><GrCaretNext />
                 </button>
             </div>
-        </div>
+        </div >
     )
 }
 

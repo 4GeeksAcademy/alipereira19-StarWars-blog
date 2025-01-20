@@ -12,6 +12,8 @@ import { Footer } from "./component/footer";
 import LearnMorePeople from "./views/LearnMorePeople.jsx";
 import LearnMoreVehicle from "./views/LearnMoreVehicle.jsx";
 import LearnMoreStarships from "./views/LearnMoreStarships.jsx";
+import LearnMorePlanets from "./views/LearnMorePlanets.jsx";
+import LearnMoreSpecies from "./views/LearnMoreSpecies.jsx"
 
 //create your first component
 const Layout = () => {
@@ -30,6 +32,8 @@ const Layout = () => {
 						<Route path="/morepeople" element={<LearnMorePeople />} />
 						<Route path="/morevehicles" element={<LearnMoreVehicle />} />
 						<Route path="/morestarships" element={<LearnMoreStarships />} />
+						<Route path="/moreplanets" element={<LearnMorePlanets />} />
+						<Route path="/morespecies" element={<LearnMoreSpecies />} />
 						<Route path="*" element={<h1>Not found!</h1>} />
 					</Routes>
 					<Footer />

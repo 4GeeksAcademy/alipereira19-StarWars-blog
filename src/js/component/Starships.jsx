@@ -3,6 +3,8 @@ import { Context } from "../store/appContext";
 import { useNavigate } from "react-router-dom";
 import { GrCaretNext } from "react-icons/gr";
 import { GrCaretPrevious } from "react-icons/gr";
+import { FaStar } from "react-icons/fa";
+
 
 const Starships = () => {
     const { store, actions } = useContext(Context);
@@ -55,6 +57,14 @@ const Starships = () => {
             console.error(error);
         }
     };
+    const handlerFav = async (item) => {
+        try {
+            await actions.addToFavorites(item);
+            console.log(handlerFav)
+        } catch (error) {
+            console.error(error);
+        }
+    };
 
     useEffect(() => {
         handlerGetStarships();
@@ -62,7 +72,7 @@ const Starships = () => {
     }, []);
     return (
         <div className="container my-4">
-            <h1 className="" style={{ color: 'rgb(3, 93, 172)', fontSize: '80px' }}>Starships</h1>
+            <h1 className="" style={{ backgroundImage: `url(${'https://static0.gamerantimages.com/wordpress/wp-content/uploads/2024/01/star-wars-largest-starships-ranked.jpg'})`, backgroundSize: 'contain', backgroundPosition: 'center', color: 'transparent', backgroundClip: 'text', WebkitBackgroundClip: 'text', fontSize: '100px' }}>Starships</h1>
             <div className="d-flex overflow-auto flex-row" style={{
                 display: "flex",
                 flexDirection: "row",
@@ -90,7 +100,9 @@ const Starships = () => {
                                 <div className="card-body ">
                                     <h5 className="card-title" style={{ color: "rgb(255, 25, 25)" }}>{starship.name}</h5>
                                     <br />
-                                    <button style={{ background: "rgb(102, 102, 102)" }} className="btn btn-md text-warning" onClick={() => handlerMoreDetails(starship.uid)}>Learn More!</button>
+                                    <button style={{ background: "rgb(102, 102, 102)" }} className="btn btn-md text-light" onClick={() => handlerMoreDetails(starship.uid)}>Learn More!</button>
+                                    <button className="btn btn-sm border border-dark rounded text-warning" onClick={() => handlerFav(starship)}><FaStar />
+                                    </button>
                                 </div>
                             </div>
                         )

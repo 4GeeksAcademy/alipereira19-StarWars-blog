@@ -7,6 +7,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 			vehicleProperties: [],
 			starships: [],
 			starshipProperties: [],
+			planets: [],
+			planetsProperties: [],
+			species: [],
+			speciesProperties: [],
+			favorites: [],
 		},
 		actions: {
 			getPeople: async (page) => {
@@ -131,6 +136,100 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.error(error);
 
 				}
+			},
+			getPlanets: async (page) => {
+				try {
+					console.log("estoy en planets");
+
+					const response = await fetch(`https://www.swapi.tech/api/planets?page=${page}&limit=10`)
+					console.log("Este es el response de planets", response);
+
+					if (!response.ok) {
+						throw new Error("No sirvió")
+
+					}
+					const data = await response.json();
+					console.log("esta es la data de planets", data);
+
+					const store = getStore()
+					setStore({ ...store, planets: data.results })
+					console.log(data);
+
+				} catch (error) {
+					console.error(error);
+
+				}
+			},
+			getMorePlanets: async (id) => {
+				try {
+					const response = await fetch(`https://www.swapi.tech/api/planets/${id}`)
+					if (!response.ok) {
+						throw new Error("No sirvió")
+					}
+					const data = await response.json();
+					console.log("esta es la otra data de planets", data);
+
+					const store = getStore()
+					setStore({ ...store, planetProperties: data.result })
+					console.log(data);
+
+				} catch (error) {
+					console.error(error);
+
+				}
+			},
+			getSpecies: async (page) => {
+				try {
+					console.log("estoy en planets");
+
+					const response = await fetch(`https://www.swapi.tech/api/species?page=${page}&limit=10`)
+					console.log("Este es el response de species", response);
+
+					if (!response.ok) {
+						throw new Error("No sirvió")
+
+					}
+					const data = await response.json();
+					console.log("esta es la data de species", data);
+
+					const store = getStore()
+					setStore({ ...store, species: data.results })
+					console.log(data);
+
+				} catch (error) {
+					console.error(error);
+
+				}
+			},
+			getMoreSpecies: async (id) => {
+				try {
+					const response = await fetch(`https://www.swapi.tech/api/species/${id}`)
+					if (!response.ok) {
+						throw new Error("No sirvió")
+					}
+					const data = await response.json();
+					console.log("esta es la otra data de species", data);
+
+					const store = getStore()
+					setStore({ ...store, speciesProperties: data.result })
+					console.log(data);
+
+				} catch (error) {
+					console.error(error);
+
+				}
+			},
+			addToFavorites: (item) => {
+				const store = getStore();
+				const exists = store.favorites.some((fav) => fav.uid === item.uid);
+				if (!exists) {
+					setStore({ favorites: [...store.favorites, item] });
+				}
+			},
+			removeFromFavorites: (uid) => {
+				const store = getStore();
+				const updatedFavorites = store.favorites.filter((fav) => fav.uid !== uid);
+				setStore({ favorites: updatedFavorites });
 			},
 		}
 	};
